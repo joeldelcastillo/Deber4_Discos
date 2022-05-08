@@ -13,7 +13,7 @@ _Specs_
     - Ram: 16 GB DDR4
     - GPU: RTX 2060 
     - Storage: M.2 SSD of 1 TB
-We used the distribution ubuntu 20.06 of Linux in a virtual machine called Virtual Box.  The commands we used were dd if=/dev/zero of=Escritorio/cmp3004/deber4/testfile.txt bs=256b count=1 oflag= direct,  and we tested for different values of bs which were 256b, 4k, 16k, 256k, 1M, and finally 1G.  Also we test with oflag=direct and oflag=dsync. 
+We used the distribution ubuntu 20.06 of Linux in a virtual machine called Virtual Box. The commands we used were dd if=/dev/zero of=Escritorio/cmp3004/deber4/testfile.txt bs=256b count=1 oflag= direct,  and we tested for different values of bs which were 256b, 4k, 16k, 256k, 1M, and finally 1G. Also we test with oflag=direct and oflag=dsync. 
 
 
 _Commands_
