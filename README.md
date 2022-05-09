@@ -10,28 +10,27 @@
 
 _Specs_
 
-    - Processor: Ryzen 7 Series 400 Octa-core
+    - Processor: Ryzen 7 Series 4000 Octa-core
     - Ram: 16 GB DDR4
     - GPU: RTX 2060
     - Storage: M.2 SSD of 1 TB
 
-We used the distribution Ubuntu 20.04.3 LTS of Linux in a virtual machine called Virtual Box. The commands we used were dd if=/dev/zero of=Escritorio/cmp3004/deber4/testfile.txt bs=256b count=1 oflag= direct,  and we tested for different values of bs which were 256b, 4k, 16k, 256k, 1M, and finally 1G. Also we test with oflag=direct and oflag=dsync. 
-
+We used the distribution Ubuntu 20.04.3 LTS of Linux in a virtual machine called Virtual Box. The commands we used were dd if=/dev/zero of=Escritorio/cmp3004/deber4/testfile.txt bs=256b count=1 oflag= direct, and we tested for different values of bs which were 256b, 4k, 16k, 256k, 1M, and finally 1G. Also we test with oflag=direct and oflag=dsync.
 
 _Commands_
 
 256b:
-![Flash](./Images/SSD/256bSSD.png)
+![SSD](./Images/SSD/256bSSD.png)
 4k:
-![Flash](./Images/SSD/4kSSD.png)
+![SSD](./Images/SSD/4kSSD.png)
 16k:
-![Flash](./Images/SSD/16kSSD.png)
+![SSD](./Images/SSD/16kSSD.png)
 256k:
-![Flash](./Images/SSD/256kSSD.png)
+![SSD](./Images/SSD/256kSSD.png)
 1M:
-![Flash](./Images/SSD/1MSSD.png)
+![SSD](./Images/SSD/1MSSD.png)
 1G:
-![Flash](./Images/SSD/1GSSD.png)
+![SSD](./Images/SSD/1GSSD.png)
 
 _Graph_  
 We registered the following results:  
@@ -40,59 +39,105 @@ We registered the following results:
 
 ## Internal HDD
 
-## External HDD
-
 _Specs_
 
-    - Removable flash drive
-    - Capacity: 32GB
+    - WD Elements HDD
+    - Capacity: 1.5T
+    - Processor: AMD Ryzen 5 4600H with Radeon Graphics 3.00 GHz
+    - Ram: 8 GB DDR4
+    - GPU: RTX 2060
 
 _Commands_
 
 256b:
-![Flash](./Images/Flash/256b.jpeg)
-4096b:
-![Flash](./Images/Flash/4096b.jpeg)
+![HDD](./Images/In-HDD/256b.jpeg)
+4k:
+![HDD](./Images/In-HDD/4k.jpeg)
 16k:
-![Flash](./Images/Flash/16k.jpeg)
+![HDD](./Images/In-HDD/16k.jpeg)
 256k:
-![Flash](./Images/Flash/256k.jpeg)
+![HDD](./Images/In-HDD/256k.jpeg)
 1M:
-![Flash](./Images/Flash/1M.jpeg)
+![HDD](./Images/In-HDD/1M.jpeg)
 256M:
-![Flash](./Images/Flash/256M.jpg)
+![HDD](./Images/In-HDD/256M.jpg)
 1G:
-![Flash](./Images/Flash/1G.jpg)
+![HDD](./Images/In-HDD/1G.jpg)
 
 _Graph (without 256Mb)_
-![Graph](./Images/Flash/Picture1.png)
+![Graph](./Images/In-HDD/Picture1.png)
 
 _Graph_
-![Graph](./Images/Flash/Picture2.png)
+![Graph](./Images/In-HDD/Picture2.png)
+
+## External HDD
+
+_Specs_
+
+    - WD Elements HDD
+    - Capacity: 1.5T
+    - Processor: AMD Ryzen 5 4600H with Radeon Graphics 3.00 GHz
+    - Ram: 8 GB DDR4
+    - GPU: RTX 2060
+
+_Commands_
+
+256b:
+![HDD](./Images/Ex-HDD/256b.jpeg)
+4096b:
+![HDD](./Images/Ex-HDD/4096b.jpeg)
+16k:
+![HDD](./Images/Ex-HDD/16k.jpeg)
+256k:
+![HDD](./Images/Ex-HDD/256k.jpeg)
+1M:
+![HDD](./Images/Ex-HDD/1M.jpeg)
+256M:
+![HDD](./Images/Ex-HDD/256M.jpg)
+1G:
+![HDD](./Images/Ex-HDD/1G.jpg)
+
+_Graph (without 256Mb)_
+![Graph](./Images/Ex-HDD/Picture1.png)
+
+_Graph_
+![Graph](./Images/Ex-HDD/Picture2.png)
 
 ## Conclusions
 
-    - What do you observe?
-    - What are the main differences between the three drives?
-    - What are the differences in performance when we change the value of `bs`?
+- What do you observe?
 
-How do we explain the difference in performance of these two options `oflag=direct` and `oflag=dsync`?
+- What are the main differences between the three drives?
+
+The main difference between magnetic internal hard drives, internal SSDs, and external drives is the speed at which data can be accessed. Hard drives tend to be the slowest, followed by SSDs, with external drives generally being the fastest. This is due to the fact that hard drives store data on spinning disks, which need to be accessed sequentially in order to be read or written to. SSDs, on the other hand, store data on interconnected HDD memory chips, which can be accessed much more quickly. External drives are also generally faster than hard drives, as they tend to use faster interface standards such as USB 3.0 or Thunderbolt.
+
+- Why we see differences in performance for different values of `bs`?
+
+The `bs` parameter in the `dd` command specifies the number of bytes that are read or written at a time. A larger value for `bs` will result in fewer reads or writes, which can improve performance. However, if the value is too large, it can actually decrease performance.
+
+1. A larger buffer will generally lead to better performance, as it allows dd to read/write more data at once.
+
+2. The file system on which the input and output files are located may have different block sizes, which can also impact performance.
+
+3. The speed of the storage devices used for the input and output files can also play a role in performance. For example, if you are writing to a slow USB drive, you will likely see better performance with a smaller `bs` value than if you were writing to a fast SSD.
+
+- How do we explain the difference in performance of these two options `oflag=direct` and `oflag=dsync`?
 
 oflag=direct will cause data to be written directly to the disk without going through the operating system's buffer cache. oflag=dsync will cause data to be written to the disk only after it is flushed from the operating system's buffer cache. oflag=direct will be faster if the operating system's buffer cache is not being used, while oflag=dsync will be faster if the operating system's buffer cache is being used.
 
+As it was our first time writing these files, writing without using the buffer cache was much slower when we used the direct flag.
+
 _Unexpected problems_
 
-1. Automatic ejection of flash drive while writing data
+1. Automatic ejection of HDD drive while writing data
 
-   ![Flash](./Images/Flash/1GD.jpg)
-   dd command ejected flash drive when writing big amounts of data (>200Mb) and give an input/output error
+   ![HDD](./Images/Ex-HDD/1GD.jpg)
+   dd command ejected HDD drive when writing big amounts of data (>200Mb) and give an input/output error
 
    Possible causes:
 
-   - The external flash drive could be faulty and not able to properly handle the data being written to it. (Our usb drive is an SD card with and adapter for USB, is very old, and it is used for saving pictures from cameras)
+   - The external HDD drive could be faulty and not able to properly handle the data being written to it. (Our HDD is very old and it is used for saving pictures from cameras)
 
    - There is not enough space in the VM to write data into another drive. (We were given a warning about having less than 100Mb in the internal VM memory)
 
-   - The external flash drive could be overfilled and not have enough space to properly store the data. (There is 27GB left in the flash drive, it is the least possible)
-
-- Why we see differences in performance for different values of `bs`?
+   - The external HDD drive could be overfilled and not have enough space to properly store the data. (There is 27GB left in the drive, it is the least possible)
