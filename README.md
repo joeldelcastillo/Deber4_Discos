@@ -13,7 +13,8 @@ _Specs_
     - Processor: Ryzen 7 Series 4000 Octa-core
     - Ram: 16 GB DDR4
     - GPU: RTX 2060
-    - Storage: M.2 SSD of 1 TB
+    - Drive: M.2 SSD
+    - Capacity: 1 TB
 
 We used the distribution Ubuntu 20.04.3 LTS of Linux in a virtual machine called Virtual Box. The commands we used were dd if=/dev/zero of=Escritorio/cmp3004/deber4/testfile.txt bs=256b count=1 oflag= direct, and we tested for different values of bs which were 256b, 4k, 16k, 256k, 1M, and finally 1G. Also we test with oflag=direct and oflag=dsync.
 
@@ -43,9 +44,9 @@ _Specs_
 
     - Processor: Intel Core i7 (4th)
     - Ram: 16 GB DDR4
-    - Seagate
-    - Capacity: 2TB
     - GPU: Integrated Graphics
+    - Drive: Seagate HDD
+    - Capacity: 2TB
 
 _Commands_
 
@@ -74,9 +75,9 @@ _Specs_
 
     - Processor: AMD Ryzen 5 4600H with Radeon Graphics 3.00 GHz
     - Ram: 8 GB DDR4
-    - WD Elements HDD
-    - Capacity: 1.5TB
     - GPU: Radeon Graphics
+    - Drive: WD Elements HDD
+    - Capacity: 1.5TB
 
 _Commands_
 
