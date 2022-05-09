@@ -106,13 +106,19 @@ _Graph_
 
 ## Conclusions
 
-- What do you observe?
+### What do you observe?
 
-- What are the main differences between the three drives?
+After analyzing the graphs:
 
-The main difference between magnetic internal hard drives, internal SSDs, and external drives is the speed at which data can be accessed. Hard drives tend to be the slowest, followed by SSDs, with external drives generally being the fastest. This is due to the fact that hard drives store data on spinning disks, which need to be accessed sequentially in order to be read or written to. SSDs, on the other hand, store data on interconnected HDD memory chips, which can be accessed much more quickly. External drives are also generally faster than hard drives, as they tend to use faster interface standards such as USB 3.0 or Thunderbolt.
+1. The internal SSD has the least amount of transferred time of data. SSD stores data on interconnected flash memory chips, which can be read and written much faster than the spinning disks.
+2. In all cases, `oflag=direct` had the best performance. The `oflag=dsync` flag tells `dd` to use the `sync_file_range()` system call, which will ensure that the data is written to disk before `dd` returns. This can also result in better performance, but it may be slower than `oflag=direct` because `sync_file_range()` may need to wait for the disk to flush its data.
+3. An external HDD has worse performance than an internal SSD or an internal HDD because it is connected to the computer via a USB port, which is slower than the SATA port used by internal drives.
 
-- Why we see differences in performance for different values of `bs`?
+### What are the main differences between the three drives?
+
+The main difference between magnetic internal hard drives, internal SSDs, and external drives is the speed at which data can be accessed. Hard drives tend to be the slowest, followed by SSDs, with external drives generally being the fastest. This is due to the fact that hard drives store data on spinning disks, which need to be accessed sequentially in order to be read or written to. SSDs, on the other hand, store data on interconnected HDD memory chips, which can be accessed much more quickly. External drives are also generally slower than internal drives, as they tend to use USB ports.
+
+### Why we see differences in performance for different values of `bs`?
 
 The `bs` parameter in the `dd` command specifies the number of bytes that are read or written at a time. A larger value for `bs` will result in fewer reads or writes, which can improve performance. However, if the value is too large, it can actually decrease performance.
 
@@ -126,19 +132,19 @@ The `bs` parameter in the `dd` command specifies the number of bytes that are re
 
 oflag=direct will cause data to be written directly to the disk without going through the operating system's buffer cache. oflag=dsync will cause data to be written to the disk only after it is flushed from the operating system's buffer cache. oflag=direct will be faster if the operating system's buffer cache is not being used, while oflag=dsync will be faster if the operating system's buffer cache is being used.
 
-As it was our first time writing these files, writing without using the buffer cache was much slower when we used the direct flag.
+Writing with `oflag=direct` flag was much faster than `oflag=dsync`since it did not use the buffer cache.
 
-_Unexpected problems_
+### Unexpected problems
 
-1. Automatic ejection of HDD drive while writing data
+- Automatic ejection of HDD drive while writing data
 
-   ![HDD](./Images/Ex-HDD/1GD.jpg)
-   dd command ejected HDD drive when writing big amounts of data (>200Mb) and give an input/output error
+  ![HDD](./Images/Ex-HDD/1GD.jpg)
+  dd command ejected HDD drive when writing big amounts of data (>200Mb) and give an input/output error
 
-   Possible causes:
+  Possible causes:
 
-   - The external HDD drive could be faulty and not able to properly handle the data being written to it. (Our HDD is very old and it is used for saving pictures from cameras)
+  - The external HDD drive could be faulty and not able to properly handle the data being written to it. (Our HDD is very old and it is used for saving pictures from cameras)
 
-   - There is not enough space in the VM to write data into another drive. (We were given a warning about having less than 100Mb in the internal VM memory)
+  - There is not enough space in the VM to write data into another drive. (We were given a warning about having less than 100Mb in the internal VM memory)
 
-   - The external HDD drive could be overfilled and not have enough space to properly store the data. (There is 27GB left in the drive, it is the least possible)
+  - The external HDD drive could be overfilled and not have enough space to properly store the data. (There is 27GB left in the drive, it is the least possible)
