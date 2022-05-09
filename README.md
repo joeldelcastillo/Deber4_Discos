@@ -41,11 +41,11 @@ We registered the following results:
 
 _Specs_
 
-    - WD Elements HDD
-    - Capacity: 1.5T
-    - Processor: AMD Ryzen 5 4600H with Radeon Graphics 3.00 GHz
-    - Ram: 8 GB DDR4
-    - GPU: RTX 2060
+    - Processor: Intel Core i7 (4th)
+    - Ram: 16 GB DDR4
+    - Seagate
+    - Capacity: 2TB
+    - GPU: Integrated Graphics
 
 _Commands_
 
@@ -72,11 +72,11 @@ _Graph_
 
 _Specs_
 
-    - WD Elements HDD
-    - Capacity: 1.5T
     - Processor: AMD Ryzen 5 4600H with Radeon Graphics 3.00 GHz
     - Ram: 8 GB DDR4
-    - GPU: RTX 2060
+    - WD Elements HDD
+    - Capacity: 1.5TB
+    - GPU: Radeon Graphics
 
 _Commands_
 
