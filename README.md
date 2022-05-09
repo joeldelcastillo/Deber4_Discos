@@ -59,16 +59,14 @@ _Commands_
 ![HDD](./Images/In-HDD/256k.jpeg)
 1M:
 ![HDD](./Images/In-HDD/1M.jpeg)
-256M:
-![HDD](./Images/In-HDD/256M.jpg)
 1G:
-![HDD](./Images/In-HDD/1G.jpg)
+![HDD](./Images/In-HDD/1G.jpeg)
 
-_Graph (without 256Mb)_
-![Graph](./Images/In-HDD/Picture1.png)
+_Raw Data_
+![Graph](./Images/In-HDD/Pic1.jpeg)
 
 _Graph_
-![Graph](./Images/In-HDD/Picture2.png)
+![Graph](./Images/In-HDD/Picture3.png)
 
 ## External HDD
 
@@ -97,11 +95,14 @@ _Commands_
 1G:
 ![HDD](./Images/Ex-HDD/1G.jpg)
 
+_Raw (without 256Mb)_
+![Graph](./Images/Ex-HDD/Pic2.jpeg)
+
 _Graph (without 256Mb)_
-![Graph](./Images/Ex-HDD/Picture1.png)
+![Graph](./Images/Ex-HDD/Picture2.png)
 
 _Graph_
-![Graph](./Images/Ex-HDD/Picture2.png)
+![Graph](./Images/Ex-HDD/Picture1.png)
 
 ## Conclusions
 
