@@ -6,6 +6,9 @@
 
 # Homework 4
 
+- Joel del Castillo
+- José Luis Santillán
+
 ## Internal SSD
 
 _Specs_
